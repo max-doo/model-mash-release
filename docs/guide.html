@@ -136,7 +136,8 @@
             }
         }
     </style>
-...</head>
+    ...
+</head>
 
 <body>
 
@@ -195,7 +196,7 @@
                         if (!href) return;
                         if (currentPath === 'guide.html' && href.indexOf('guide.html') !== -1) {
                             link.classList.add('active');
-                        } else if ((currentPath === '' || currentPath === 'index.html') && href === '#') {
+                        } else if ((currentPath === '' || currentPath === 'index.html') && href === 'index.html') {
                             link.classList.add('active');
                         }
                     });
