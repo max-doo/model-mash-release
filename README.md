@@ -1,6 +1,6 @@
 # ModelMash (模方) 使用指南
 
-[![GitHub Downloads](https://img.shields.io/github/downloads/OWNER/REPO/total)](https://github.com/OWNER/REPO/releases)
+[![GitHub Downloads](https://img.shields.io/github/downloads/max-doo/model-mash-release/total)](https://github.com/max-doo/model-mash-release/releases)
 
 ## **💡为什么选择 ModelMash？**
 
@@ -73,7 +73,7 @@ ModelMash 的核心原理是内嵌了多个“独立浏览器”窗口。
     *   *右下角列表图标*：打开 **总结历史**。
     *   *右下角生成总结按钮*：打开 **AI 总结面板**。
 
-    ![主页面](assets/main-page.png)
+    ![主页面](docs/assets/main-page.png)
 ---
 
 ## 3. 💬 高效对话工作流
@@ -214,4 +214,4 @@ ModelMash 支持所有兼容 OpenAI API 格式的供应商。**免费 Token：�
 
 > **希望这份指南能帮助你将 ModelMash 变成你最得力的 AI 助手！如有更多问题或建议，欢迎提交留言反馈！**
 
-![问卷二维码](assets/qrcode.png)
+![问卷二维码](docs/assets/qrcode.png)
