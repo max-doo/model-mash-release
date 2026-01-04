@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ModelMash 用户指南：学习如何快速上手、配置模型以及使用智能总结 Agent 提升 AI 问答效率。详细介绍 Deep Research 和裁判模式。">
+    <meta name="keywords" content="ModelMash 指南, 模方教程, AI 总结教程, ModelMash 配置, 智能 Agent 使用, AI 聚合工具说明">
+    <title>ModelMash 用户指南 - 官方操作说明与功能详解</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://max-doo.github.io/model-mash-release/guide.html">
+    <meta property="og:title" content="ModelMash 用户指南 - 官方操作说明与功能详解">
+    <meta property="og:description" content="学习如何快速上手 ModelMash，高效聚合主流 AI 模型并利用智能 Agent 进行深度分析。">
+    <meta property="og:image" content="https://max-doo.github.io/model-mash-release/assets/main-page.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://max-doo.github.io/model-mash-release/guide.html">
+    <meta property="twitter:title" content="ModelMash 用户指南 - 官方操作说明与功能详解">
+    <meta property="twitter:description" content="学习如何快速上手 ModelMash，高效聚合主流 AI 模型并利用智能 Agent 进行深度分析。">
+    <meta property="twitter:image" content="https://max-doo.github.io/model-mash-release/assets/main-page.png">
+
+    <link rel="canonical" href="https://max-doo.github.io/model-mash-release/guide.html">
+    <link rel="icon" href="assets/favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <!-- Highlight.js theme -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <style>
+        /* Guide specific layout */
+        .guide-container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: calc(100vh - 80px);
+        }
+
+        .guide-sidebar {
+            width: 250px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 100px;
+            height: calc(100vh - 120px);
+            overflow-y: auto;
+            padding-right: 1.5rem;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            margin-right: 2rem;
+            align-self: flex-start;
+        }
+
+        .guide-sidebar h3 {
+            font-size: 1.1rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc-list a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: block;
+            padding: 0.3rem 0;
+            transition: all 0.2s;
+            border-left: 2px solid transparent;
+            padding-left: 10px;
+        }
+
+        .toc-list a:hover,
+        .toc-list a.active {
+            color: var(--text-primary);
+            border-left-color: var(--accent-color);
+            background: linear-gradient(90deg, rgba(0, 255, 157, 0.05), transparent);
+        }
+
+        .toc-list .toc-sub {
+            padding-left: 1.2rem;
+            font-size: 0.9rem;
+        }
+
+        .markdown-body {
+            flex-grow: 1;
+            /* Top margin requested by user */
+            margin-top: 2rem;
+            margin-bottom: 4rem;
+            /* Center the content */
+            max-width: 960px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .markdown-body img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 1rem auto;
+            border: none !important;
+            border-left: none !important;
+            box-shadow: none;
+        }
+
+        @media (max-width: 1024px) {
+            .guide-container {
+                flex-direction: column;
+            }
+
+            .guide-sidebar {
+                width: 100%;
+                position: relative;
+                top: 0;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                margin-bottom: 2rem;
+                padding-bottom: 1rem;
+            }
+
+            .markdown-body {
+                margin-top: 0;
+            }
+        }
+    </style>
+...</head>
+
+<body>
+
+    <div id="site-header"></div>
+
+    <div class="guide-container">
+        <!-- Sidebar for TOC -->
+        <aside class="guide-sidebar">
+            <h3>目录导航</h3>
+            <ul id="toc" class="toc-list">
+                <!-- TOC will be generated here -->
+                <li style="color: var(--text-secondary); font-size: 0.9rem;">正在生成目录...</li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <div id="content" class="markdown-body">
+            <p style="text-align: center; color: var(--text-secondary); margin-top: 50px;">正在加载文档...</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 ModelMash Team.</p>
+    </footer>
+
+    <script>
+        (function () {
+            var container = document.getElementById('site-header');
+            if (!container) return;
+
+            fetch('index.html')
+                .then(function (response) {
+                    if (!response.ok) {
+                        throw new Error('无法加载标题栏');
+                    }
+                    return response.text();
+                })
+                .then(function (html) {
+                    var parser = new DOMParser();
+                    var doc = parser.parseFromString(html, 'text/html');
+                    var header = doc.querySelector('header');
+                    if (!header) return;
+
+                    container.innerHTML = header.outerHTML;
+
+                    var navLinks = container.querySelectorAll('nav a');
+                    navLinks.forEach(function (link) {
+                        link.classList.remove('active');
+                    });
+
+                    var pathParts = location.pathname.split('/');
+                    var currentPath = pathParts[pathParts.length - 1] || 'index.html';
+
+                    navLinks.forEach(function (link) {
+                        var href = link.getAttribute('href');
+                        if (!href) return;
+                        if (currentPath === 'guide.html' && href.indexOf('guide.html') !== -1) {
+                            link.classList.add('active');
+                        } else if ((currentPath === '' || currentPath === 'index.html') && href === '#') {
+                            link.classList.add('active');
+                        }
+                    });
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+        })();
+    </script>
+
+    <script>
+        // Initialize highlight.js
+        hljs.highlightAll();
+
+        // Fetch and render markdown
+        fetch('guide.md')
+            .then(response => {
+                if (!response.ok) throw new Error("无法加载文档");
+                return response.text();
+            })
+            .then(text => {
+                const contentDiv = document.getElementById('content');
+                // Configure marked
+                const renderer = new marked.Renderer();
+                const linkRenderer = renderer.link;
+                renderer.link = function (tokenOrHref, title, text) {
+                    let href = tokenOrHref;
+                    let html = '';
+
+                    // Handle new Marked version (receives object)
+                    if (typeof tokenOrHref === 'object' && tokenOrHref !== null) {
+                        href = tokenOrHref.href;
+                        html = linkRenderer.call(this, tokenOrHref);
+                    } else {
+                        // Handle old Marked version (receives string arguments)
+                        html = linkRenderer.call(this, tokenOrHref, title, text);
+                    }
+
+                    // Safe check for href
+                    if (typeof href !== 'string') return html;
+
+                    const localLink = href.startsWith(`${location.protocol}//${location.host}`) || href.startsWith('#');
+                    return localLink ? html : html.replace(/^<a /, '<a target="_blank" rel="noopener noreferrer" ');
+                };
+
+                marked.setOptions({
+                    renderer: renderer,
+                    highlight: function (code, lang) {
+                        const language = highlight.getLanguage(lang) ? lang : 'plaintext';
+                        return highlight.highlight(code, { language }).value;
+                    }
+                });
+
+                contentDiv.innerHTML = marked.parse(text);
+
+                // Re-run highlight
+                document.querySelectorAll('pre code').forEach((block) => {
+                    hljs.highlightElement(block);
+                });
+
+                // Generate TOC
+                generateTOC(contentDiv);
+            })
+            .catch(error => {
+                document.getElementById('content').innerHTML = `<p style="color: #ff6b6b; text-align: center;">加载文档失败: ${error.message}</p>`;
+            });
+
+        function generateTOC(contentElement) {
+            const tocList = document.getElementById('toc');
+            tocList.innerHTML = '';
+
+            const headers = contentElement.querySelectorAll('h2, h3');
+            let currentH2Li = null;
+            let currentUl = null;
+
+            headers.forEach((header, index) => {
+                if (!header.id) {
+                    header.id = 'heading-' + index;
+                }
+
+                const a = document.createElement('a');
+                a.href = '#' + header.id;
+                a.textContent = header.textContent;
+                // Add class to link to map back to header ID easily
+                a.dataset.target = header.id;
+
+                a.onclick = (e) => {
+                    e.preventDefault();
+                    document.getElementById(header.id).scrollIntoView({ behavior: 'smooth' });
+                };
+
+                if (header.tagName === 'H2') {
+                    // Create new H2 item
+                    const li = document.createElement('li');
+                    li.appendChild(a);
+
+                    // Create container for H3s
+                    const ul = document.createElement('ul');
+                    li.appendChild(ul);
+
+                    tocList.appendChild(li);
+
+                    currentH2Li = li;
+                    currentUl = ul;
+                } else if (header.tagName === 'H3' && currentUl) {
+                    // Append H3 to current H2's list
+                    const li = document.createElement('li');
+                    li.appendChild(a);
+                    currentUl.appendChild(li);
+                }
+            });
+
+            // Init Scroll Spy
+            initScrollSpy();
+        }
+
+        function initScrollSpy() {
+            const headers = document.querySelectorAll('.markdown-body h2, .markdown-body h3');
+            const tocLinks = document.querySelectorAll('.toc-list a');
+            const headerMap = new Map();
+
+            // Map header IDs to their TOC links and parent LIs
+            tocLinks.forEach(link => {
+                headerMap.set(link.dataset.target, link);
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Remove active class from all
+                        tocLinks.forEach(l => l.classList.remove('active'));
+
+                        const activeLink = headerMap.get(entry.target.id);
+                        if (activeLink) {
+                            activeLink.classList.add('active');
+
+                            // Handle expanding parent H2
+                            const parentLi = activeLink.closest('li'); // Current LI
+                            const parentUl = activeLink.closest('ul'); // Current UL (if H3)
+
+                            // Close all opens first? Maybe not for smooth UX.
+                            // Let's just manage the 'open' state on the top-level LI
+
+                            document.querySelectorAll('.toc-list > li').forEach(li => li.classList.remove('open'));
+
+                            if (entry.target.tagName === 'H3' && parentUl) {
+                                // If H3, expand its parent H2 LI
+                                const grandParentLi = parentUl.parentElement;
+                                if (grandParentLi) grandParentLi.classList.add('open');
+                            } else if (entry.target.tagName === 'H2') {
+                                // If H2, expand itself
+                                if (parentLi) parentLi.classList.add('open');
+                            }
+                        }
+                    }
+                });
+            }, {
+                rootMargin: '-10% 0px -80% 0px' // Trigger when near top
+            });
+
+            headers.forEach(header => observer.observe(header));
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,508 @@
+:root {
+  --bg-color: #050505;
+  --bg-secondary: #0a0a0a;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+
+  /* Neon Green Theme */
+  --accent-color: #00ff9d;
+  --accent-glow: rgba(0, 255, 157, 0.4);
+  --accent-hover: #00cc7d;
+
+  --border-color: #333;
+  --card-bg: rgba(20, 20, 20, 0.6);
+
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.7;
+  background-image:
+    linear-gradient(rgba(0, 255, 157, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 157, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-attachment: fixed;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  background-color: rgba(5, 5, 5, 0.8);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0, 255, 157, 0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+}
+
+.logo img {
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(0 0 5px var(--accent-color));
+}
+
+nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  margin-left: 2rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s;
+  position: relative;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--accent-color);
+  text-shadow: 0 0 8px var(--accent-glow);
+}
+
+nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent-color);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  /* Reduced top padding as requested */
+  padding: 5rem 1rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ... existing hero styles ... */
+
+/* ... (keep existing styles) ... */
+
+/* Guide Sidebar Updates */
+.guide-sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 100px;
+  height: calc(100vh - 120px);
+  overflow-y: auto;
+  padding-right: 1.5rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  margin-right: 2rem;
+  align-self: flex-start;
+  /* Smaller font for directory */
+  font-size: 0.85rem;
+}
+
+.guide-sidebar h3 {
+  font-size: 1rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--accent-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.toc-list ul {
+  list-style: none;
+  padding-left: 1rem;
+  /* Hide sub-items by default */
+  display: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Show sub-items when parent is active/open */
+.toc-list li.open>ul {
+  display: block;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.toc-list a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  display: block;
+  padding: 0.25rem 0;
+  transition: all 0.2s;
+  border-left: 2px solid transparent;
+  padding-left: 10px;
+  margin-left: -1px;
+  /* Overlap border */
+}
+
+.toc-list a:hover,
+.toc-list a.active {
+  color: var(--text-primary);
+}
+
+.toc-list>li>a.active {
+  border-left-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(0, 255, 157, 0.1) 0%, transparent 70%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero h1 {
+  font-size: 4.5rem;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(180deg, #fff 0%, #cfcfcf 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+.hero h1 span {
+  color: var(--accent-color);
+  -webkit-text-fill-color: var(--accent-color);
+  text-shadow: 0 0 20px var(--accent-glow);
+}
+
+.hero p {
+  font-size: 1.4rem;
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  color: #000;
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.btn-primary:hover {
+  background-color: #fff;
+  box-shadow: 0 0 30px var(--accent-glow), 0 0 10px #fff;
+  transform: translateY(-2px) scale(1.05);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  margin-left: 1rem;
+}
+
+.btn-outline:hover {
+  background: rgba(0, 255, 157, 0.1);
+  box-shadow: 0 0 15px var(--accent-glow);
+  color: #fff;
+  border-color: #fff;
+}
+
+
+/* Hero Actions */
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+
+/* Hero Features Row */
+.hero-features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.hero-features .feature-card {
+  background: rgba(10, 10, 10, 0.8);
+  border: 1px solid rgba(0, 255, 157, 0.1);
+  padding: 1.5rem;
+  text-align: left;
+  /* Ensure height consistency */
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1024px) {
+  .hero-features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-features {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hero-features .feature-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 30px rgba(0, 255, 157, 0.1);
+}
+
+.hero-features .feature-icon {
+  width: 50px;
+  height: 50px;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.hero-features h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.hero-features p {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+  color: var(--text-secondary);
+}
+
+
+/* Old Features Section Removed */
+
+/* Downloads Section */
+.downloads {
+  padding: 6rem 2rem;
+  background: linear-gradient(180deg, transparent, rgba(0, 255, 157, 0.05));
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.download-options {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+.download-card {
+  background-color: #111;
+  padding: 3rem 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 320px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.download-card:hover {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 30px rgba(0, 255, 157, 0.15);
+}
+
+.download-card h3 {
+  margin-top: 0;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.download-card p {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  background: #050505;
+}
+
+/* --- Guide / Markdown Styles --- */
+.markdown-body {
+  max-width: 960px;
+  margin: 40px auto;
+  padding: 40px;
+  color: #dadada;
+  background-color: rgba(15, 15, 15, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
+  color: #fff;
+  border-bottom: none;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.markdown-body h1 {
+  font-size: 2.5em;
+  text-align: center;
+  background: linear-gradient(135deg, #fff 0%, var(--accent-color) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-bottom: 0.5em;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.markdown-body h2 {
+  font-size: 1.8em;
+  border-left: 4px solid var(--accent-color);
+  padding-left: 1rem;
+}
+
+.markdown-body blockquote {
+  color: #bbb;
+  border-left: 4px solid var(--accent-color);
+  background: rgba(0, 255, 157, 0.05);
+  padding: 1rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+}
+
+.markdown-body a {
+  color: var(--accent-color);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--accent-color);
+  transition: all 0.2s;
+}
+
+.markdown-body a:hover {
+  color: #fff;
+  border-bottom: 1px solid #fff;
+  text-shadow: 0 0 8px var(--accent-glow);
+}
+
+.markdown-body pre {
+  background-color: #0d0d0d;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.markdown-body code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+.markdown-body p code {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  color: var(--accent-color);
+}
+
+.markdown-body table {
+  width: 100%;
+  margin: 2rem 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.markdown-body table th {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-weight: 600;
+}
+
+.markdown-body table tr:last-child td {
+  border-bottom: none;
+}
+
+.markdown-body table tr:hover td {
+  background-color: rgba(0, 255, 157, 0.05);
+}
