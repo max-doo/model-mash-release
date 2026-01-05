@@ -136,10 +136,9 @@
             }
         }
     </style>
-    ...
 </head>
 
-<body>
+<body class="guide-page">
 
     <div id="site-header"></div>
 
@@ -182,6 +181,17 @@
                     if (!header) return;
 
                     container.innerHTML = header.outerHTML;
+
+                    function syncHeaderHeight() {
+                        var insertedHeader = container.querySelector('header');
+                        if (!insertedHeader) return;
+                        var rect = insertedHeader.getBoundingClientRect();
+                        if (!rect || !rect.height) return;
+                        document.documentElement.style.setProperty('--header-height', rect.height + 'px');
+                    }
+
+                    requestAnimationFrame(syncHeaderHeight);
+                    window.addEventListener('resize', syncHeaderHeight);
 
                     var navLinks = container.querySelectorAll('nav a');
                     navLinks.forEach(function (link) {
